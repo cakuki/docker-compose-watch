@@ -1,0 +1,38 @@
+version: '2.2'
+services:
+  store-payment-service:
+    image: 'myorg/store-payment-service:latest'
+    command: 'node src/index.js'
+    init: true
+    restart: on-failure
+    build:
+      context: ./store/services/payment-service
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./store/services/payment-service/src:/app/src:cached
+  store-front-service:
+    image: 'myorg/store-front-service:latest'
+    command: 'node src/index.js'
+    init: true
+    restart: on-failure
+    build: ./store/services/front-service
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./store/services/front-service/src:/app/src:cached
+  mongodb:
+    image: 'mongo:3.4'
+    ports:
+      - '27017:27017'
+x-watch:
+  source-files:
+    services: store-*
+    watch: volumes
+    match: '**/*.js'
+    build: false
+  dependencies:
+    services: store-*
+    watch: buildcontext
+    match: 'package.json'
+    build: true

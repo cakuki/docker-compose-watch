@@ -1,0 +1,28 @@
+{
+  "name": "@ckk/docker-compose-watch",
+  "version": "0.1.0",
+  "description": "An experimantal wrapper for docker-compose for hot reloading",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "dcw": "bin/dcw"
+  },
+  "author": "Can Kutlu Kinay <me@ckk.im>",
+  "license": "ISC",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "dependencies": {
+    "execa": "^0.11.0",
+    "js-yaml": "^3.12.0",
+    "lodash.debounce": "^4.0.8",
+    "minimatch": "^3.0.4"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-unu": "^1.2.4",
+    "mocha": "^5.2.0"
+  }
+}
